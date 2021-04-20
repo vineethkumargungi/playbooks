@@ -1,0 +1,17 @@
+---
+- name: update web servers
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: ensure git is installed
+    package:
+        name: git
+        state: present
+  - name: ensure code is checkedout to DocumentRoot
+    git:
+        repo: https://github.com/vineethkumargungi/ecomm.git
+        dest: /var/www/html
+        clone: yes
+        update: yes
+...
